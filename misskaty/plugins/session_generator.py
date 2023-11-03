@@ -23,7 +23,6 @@ from telethon.errors import (
 from telethon.sessions import StringSession
 
 from misskaty import app
-from misskaty.core.misskaty_patch.listen.listen import ListenerTimeout
 from misskaty.vars import API_HASH, API_ID, COMMAND_HANDLER
 
 LOGGER = getLogger("MissKaty")
@@ -202,7 +201,7 @@ async def generate_session(bot, msg, telethon=False, is_bot: bool = False):
             )
             if await is_batal(phone_code_msg):
                 return
-    except ListenerTimeout:
+    except:
         return await msg.reply(
             "» Time limit reached of 10 minutes.\n\nPlease start generating your session again.",
             reply_markup=InlineKeyboardMarkup(gen_button),
@@ -232,7 +231,7 @@ async def generate_session(bot, msg, telethon=False, is_bot: bool = False):
                     filters=filters.text,
                     timeout=300,
                 )
-            except ListenerTimeout:
+            except:
                 return await msg.reply(
                     "» Time limit reached of 5 minutes.\n\nPlease start generating your session again.",
                     reply_markup=InlineKeyboardMarkup(gen_button),

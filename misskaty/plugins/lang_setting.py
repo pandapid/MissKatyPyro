@@ -12,7 +12,6 @@ from pyrogram.types import (
 
 from database.locale_db import set_db_lang
 from misskaty import app
-from misskaty.core.misskaty_patch.listen.listen import ListenerTimeout
 from misskaty.vars import COMMAND_HANDLER
 
 from ..core.decorator.permissions import require_admin
@@ -84,7 +83,7 @@ async def chlang(_, m: Union[CallbackQuery, Message], strings):
     msg = await sender(res, reply_markup=keyboard)
     try:
         await msg.wait_for_click(from_user_id=m.from_user.id, timeout=30)
-    except ListenerTimeout:
+    except:
         await msg.edit_msg(strings("exp_task", context="general"))
 
 

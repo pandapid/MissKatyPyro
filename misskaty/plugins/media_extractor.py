@@ -22,7 +22,6 @@ from pyrogram.types import (
 
 from misskaty import app
 from misskaty.core.decorator.errors import capture_err
-from misskaty.core.misskaty_patch.listen.listen import ListenerTimeout
 from misskaty.helper.human_read import get_readable_time
 from misskaty.helper.localization import use_chat_lang
 from misskaty.helper.pyro_progress import progress_for_pyrogram
@@ -118,7 +117,7 @@ async def ceksub(_, ctx: Message, strings):
             reply_markup=InlineKeyboardMarkup(buttons),
         )
         await msg.wait_for_click(from_user_id=ctx.from_user.id, timeout=30)
-    except ListenerTimeout:
+    except:
         await msg.edit_msg(strings("exp_task", context="general"))
     except Exception:
         await pesan.edit_msg(strings("fail_extr_media"))
