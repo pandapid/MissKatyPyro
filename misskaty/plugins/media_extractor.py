@@ -117,8 +117,6 @@ async def ceksub(_, ctx: Message, strings):
             reply_markup=InlineKeyboardMarkup(buttons),
         )
         await msg.wait_for_click(from_user_id=ctx.from_user.id, timeout=30)
-    except:
-        await msg.edit_msg(strings("exp_task", context="general"))
     except Exception:
         await pesan.edit_msg(strings("fail_extr_media"))
 
