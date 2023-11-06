@@ -537,7 +537,6 @@ async def update_restart(_, ctx: Message, strings):
 
 @app.on_raw_update(group=-99)
 async def updtebot(client, update, users, _):
-    client.log.info(update)
     if isinstance(update, UpdateBotStopped):
         niuser = users[update.user_id]
         if update.stopped and await db.is_user_exist(niuser.id):
